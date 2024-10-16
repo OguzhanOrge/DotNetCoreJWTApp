@@ -1,0 +1,38 @@
+﻿@using System.Text.Json
+@model UpdateProductModel
+@{
+	Layout = "_Layout";
+}
+<div>
+	<h3>Kategory Ekle</h3>
+</div>
+@{
+	TempData["Categories"] = JsonSerializer.Serialize(Model.Categories);
+}
+<form asp-action="Update" asp-controller="Product" method="post">
+	<input type="hidden" value="@Model.Id" asp-for="@Model.Id" />
+	<div class="my-4">
+		<label class="form-Control">Name</label>
+		<span class="text-danger" asp-validation-for="@Model.Name"></span>
+		<input type="text" class="form-control" asp-for="@Model.Name" />
+	</div>
+	<div class="my-4">
+		<label class="form-Control">Stock</label>
+		<span class="text-danger" asp-validation-for="@Model.Stock"></span>
+		<input type="text" class="form-control" asp-for="@Model.Stock" />
+	</div>
+	<div class="my-4">
+		<label class="form-Control">Price</label>
+		<span class="text-danger" asp-validation-for="@Model.Price"></span>
+		<input type="text" class="form-control" asp-for="@Model.Price" />
+	</div>
+	<div class="my-4">
+		<label class="form-Control">Category</label>
+		<span class="text-danger" asp-validation-for="@Model.CategoryId"></span>
+		<select class="form-select" asp-items="@Model.Categories" asp-for="@Model.CategoryId">
+		</select>
+	</div>
+	<div>
+		<button class="btn btn-success btn-block">Giriş</button>
+	</div>
+</form>
